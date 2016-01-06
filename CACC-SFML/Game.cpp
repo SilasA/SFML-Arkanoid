@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "GameObjects.h"
 #include "Game.h"
 
 #include <SFML/Graphics.hpp>

@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "MainMenu.h"
 #include "Game.h"
 
 #include <SFML/Graphics.hpp>
@@ -12,8 +13,16 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Game game;
-	game.gameMain();
+	int startup;
+
+	MainMenu mainmenu;
+	startup = mainmenu.Display();
+
+	if (startup == 0)
+	{
+		Game game;
+		game.gameMain();
+	}
 
 	return 0;
 }

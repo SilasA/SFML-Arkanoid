@@ -15,16 +15,28 @@ class Button : public Rectangle
 private:
 
 	sf::Texture buttonImage;
-	sf::Sprite button;
-
+	
 	int spriteCoor;
 
 	void update() { button.setTextureRect(sf::IntRect(0, spriteCoor, 400, 100)); }
 
 public:
 
-	Button(float yPos, const std::string &dir)
+	sf::Sprite button;
+
+	enum ButtonState { SELECTED, IDLE };
+	ButtonState state = ButtonState::IDLE;
+
+	int rank;
+
+	Button()
 	{
+	}
+
+	Button(float yPos, const std::string &dir, int rank)
+	{
+		this->rank = rank;
+
 		if (buttonImage.loadFromFile(dir))
 			std::cout << "Success." << std::endl;
 		else
@@ -32,6 +44,8 @@ public:
 
 		button.setTexture(buttonImage);
 		button.setTextureRect(sf::IntRect(0, spriteCoor, 400, 100));
+
+		button.setPosition((menuWinWidth / 2.f) - (),)
 	}
 
 	void select()
@@ -40,9 +54,11 @@ public:
 		{
 		case 0:
 			spriteCoor = 105;
+			state = ButtonState::SELECTED;
 			break;
 		case 105:
 			spriteCoor = 0;
+			state = ButtonState::IDLE;
 			break;
 		default:
 			break;

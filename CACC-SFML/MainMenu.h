@@ -9,15 +9,25 @@
 
 class MainMenu
 {
-public:
+
+private:
 
 	sf::RenderWindow *menuWindow;
 
 	Button *playButton;
 	Button *exitButton;
 
-	MainMenu();
+	int currentRank = 1;
+	int buttonCount;
 
+
+
+public:
+
+	int Display();
+
+	MainMenu();
+	
 };
 
 
