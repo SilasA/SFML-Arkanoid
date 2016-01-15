@@ -9,14 +9,14 @@
 
 const unsigned int menuWinHeight{ 600 }, menuWinWidth{ 800 };
 
-class Button : public Rectangle
+class Button
 {
 
 private:
 
 	sf::Texture buttonImage;
 	
-	int spriteCoor;
+	int spriteCoor = 0;
 
 	void update() { button.setTextureRect(sf::IntRect(0, spriteCoor, 400, 100)); }
 
@@ -29,43 +29,11 @@ public:
 
 	int rank;
 
-	Button()
-	{
-	}
+	Button();
 
-	Button(float yPos, const std::string &dir, int rank)
-	{
-		this->rank = rank;
+	Button(float yPos, const std::string &dir, int rank);
 
-		if (buttonImage.loadFromFile(dir))
-			std::cout << "Success." << std::endl;
-		else
-			std::cout << "Unable to find file." << std::endl;
-
-		button.setTexture(buttonImage);
-		button.setTextureRect(sf::IntRect(0, spriteCoor, 400, 100));
-
-		button.setPosition((menuWinWidth / 2.f) - (),)
-	}
-
-	void select()
-	{
-		switch (spriteCoor)
-		{
-		case 0:
-			spriteCoor = 105;
-			state = ButtonState::SELECTED;
-			break;
-		case 105:
-			spriteCoor = 0;
-			state = ButtonState::IDLE;
-			break;
-		default:
-			break;
-		}
-
-		update();
-	}
+	void select();
 
 };
 

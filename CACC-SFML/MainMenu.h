@@ -12,7 +12,7 @@ class MainMenu
 
 private:
 
-	sf::RenderWindow *menuWindow;
+	sf::RenderWindow menuWindow{ { menuWinWidth, menuWinHeight }, "Main Menu" };
 
 	Button *playButton;
 	Button *exitButton;

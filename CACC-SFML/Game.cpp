@@ -59,7 +59,7 @@ void Game::testCollision(Brick& mBrick, Ball& mBall)
 void Game::gameMain()
 {
 	Ball ball{ windowWidth , windowHeight };
-	Paddle paddle{ windowWidth, windowHeight};
+	Paddle paddle{ windowWidth, windowHeight };
 	std::vector<Brick> bricks;
 
 	for (int iX = 0; iX < countBlocksX; ++iX)

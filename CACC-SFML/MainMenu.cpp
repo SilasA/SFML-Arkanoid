@@ -7,7 +7,6 @@
 
 MainMenu::MainMenu()
 {
-	this->menuWindow = new sf::RenderWindow{ { menuWinWidth, menuWinHeight }, "Main Menu" };
 
 	this->playButton = new Button(100, "Play_Button.png", 1);
 	this->exitButton = new Button(300, "Exit_Button.png", 2);
@@ -16,15 +15,14 @@ MainMenu::MainMenu()
 
 int MainMenu::Display()
 {
-
-	while (menuWindow->isOpen())
+	while (menuWindow.isOpen())
 	{
 		sf::Event event;
-		while (menuWindow->pollEvent(event))
+		while (menuWindow.pollEvent(event))
 		{
 			// Close
 			if (event.type == sf::Event::Closed)
-				menuWindow->close();
+				menuWindow.close();
 
 			// When Up is pressed
 			else if (event.type == sf::Keyboard::Up)
@@ -44,27 +42,39 @@ int MainMenu::Display()
 					exitButton->select();
 					this->currentRank++;
 				}
-			}
+			}	
 
 			// Selection
-			else if (event.type == sf::Keyboard::Return)
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
 				if (playButton->state == Button::ButtonState::SELECTED)
+				{
+					menuWindow.close();
 					return 0;
+				}
 				else if (exitButton->state == Button::ButtonState::SELECTED)
 				{
-					menuWindow->close();
+					menuWindow.close();
 					return 1;
 				}
 			}
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+				sf::Mouse::getPosition(this->menuWindow).x < playButton->button.getPosition().x + 400 &&
+				sf::Mouse::getPosition(this->menuWindow).x > playButton->button.getPosition().x &&
+				sf::Mouse::getPosition(this->menuWindow).y > playButton->button.getPosition().y &&
+				sf::Mouse::getPosition(this->menuWindow).y < playButton->button.getPosition().y + 100)
+			{
+				playButton->select();
+			}
 		}
 
-		menuWindow->clear();
+		menuWindow.clear();
 
-		menuWindow->draw(playButton->button);
-		menuWindow->draw(exitButton->button);
+		menuWindow.draw(playButton->button);
+		menuWindow.draw(exitButton->button);
 
-		menuWindow->display();
+		menuWindow.display();
 
 	}
+	return 0;
 }
