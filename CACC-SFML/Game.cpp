@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <string>
+#include <vector>
 
 const unsigned int windowWidth{ 800 }, windowHeight{ 600 };
 const int countBlocksX{ 11 }, countBlocksY{ 4 };
@@ -75,7 +76,8 @@ void Game::gameMain()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) break;
 
-		ball.update(windowWidth, windowHeight);
+		if (!ball.update(windowWidth, windowHeight))
+			return;
 		paddle.update(windowWidth);
 		testCollision(paddle, ball);
 

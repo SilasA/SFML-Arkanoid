@@ -3,13 +3,31 @@
 
 #include <SFML\Graphics.hpp>
 #include <string>
+#include <array>
 
 
 MainMenu::MainMenu()
 {
+	buttonArray[0] = this->playButton = new Button(100, "Play_Button.png");
+	buttonArray[1] = this->exitButton = new Button(300, "Exit_Button.png");
 
-	this->playButton = new Button(100, "Play_Button.png", 1);
-	this->exitButton = new Button(300, "Exit_Button.png", 2);
+	this->buttonArrayLength = sizeof(buttonArray) / sizeof(buttonArray[0]);
+
+	buttonArray[0]->select();
+}
+
+
+void MainMenu::changeSelected(int change)
+{
+	if (currentRank + change < 0 || currentRank + change > 2) return;
+
+	this->currentRank += change;
+
+	for (int b = 0; b < buttonArrayLength; b++)
+		if (buttonArray[b]->isSelected())
+			buttonArray[b]->select();
+
+	buttonArray[currentRank]->select();
 }
 
 
@@ -24,48 +42,51 @@ int MainMenu::Display()
 			if (event.type == sf::Event::Closed)
 				menuWindow.close();
 
-			// When Up is pressed
-			else if (event.type == sf::Keyboard::Up)
-			{
-				if (this->currentRank - 1 == playButton->rank)
-				{
-					playButton->select();
-					this->currentRank--;
-				}
-			}
-
-			// When Down is pressed
-			else if (event.type == sf::Keyboard::Down)
-			{
-				if (this->currentRank + 1 == exitButton->rank)
-				{
-					exitButton->select();
-					this->currentRank++;
-				}
-			}	
-
 			// Selection
 			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 			{
-				if (playButton->state == Button::ButtonState::SELECTED)
+				if (playButton->isSelected())
 				{
 					menuWindow.close();
 					return 0;
 				}
-				else if (exitButton->state == Button::ButtonState::SELECTED)
+				if (exitButton->isSelected())
 				{
 					menuWindow.close();
 					return 1;
 				}
 			}
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+					changeSelected(-1);
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+					changeSelected(1);
+			}
+
+			/*
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && 
 				sf::Mouse::getPosition(this->menuWindow).x < playButton->button.getPosition().x + 400 &&
 				sf::Mouse::getPosition(this->menuWindow).x > playButton->button.getPosition().x &&
 				sf::Mouse::getPosition(this->menuWindow).y > playButton->button.getPosition().y &&
 				sf::Mouse::getPosition(this->menuWindow).y < playButton->button.getPosition().y + 100)
 			{
 				playButton->select();
+				if (exitButton->isSelected())
+					exitButton->select();
 			}
+			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
+				sf::Mouse::getPosition(this->menuWindow).x < exitButton->button.getPosition().x + 400 &&
+				sf::Mouse::getPosition(this->menuWindow).x > exitButton->button.getPosition().x &&
+				sf::Mouse::getPosition(this->menuWindow).y > exitButton->button.getPosition().y &&
+				sf::Mouse::getPosition(this->menuWindow).y < exitButton->button.getPosition().y + 100)
+			{
+				exitButton->select();
+				if (playButton->isSelected())
+					playButton->select();
+			} */
 		}
 
 		menuWindow.clear();

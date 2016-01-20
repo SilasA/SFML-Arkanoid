@@ -6,13 +6,12 @@
 
 Button::Button()
 {
+	this->state = Button::ButtonState::IDLE;
 }
 
 
-Button::Button(float yPos, const std::string &dir, int rank)
+Button::Button(float yPos, const std::string &dir)
 {
-	this->rank = rank;
-
 	if (buttonImage.loadFromFile(dir))
 		std::cout << "Success." << std::endl;
 	else
@@ -21,10 +20,14 @@ Button::Button(float yPos, const std::string &dir, int rank)
 	button.setTextureRect(sf::IntRect(0, 0, 400, 100));
 	button.setTexture(buttonImage);
 	button.setPosition((menuWinWidth / 2.f) - (400 / 2.f), yPos);
+	this->state = Button::ButtonState::IDLE;
 }
 
 
-void Button::select()S
+bool Button::isSelected() { return (this->state == Button::ButtonState::SELECTED); }
+
+
+void Button::select()
 {
 	if (state == ButtonState::IDLE)
 	{

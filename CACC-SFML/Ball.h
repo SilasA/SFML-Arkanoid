@@ -18,19 +18,21 @@ public:
 		shape.setOrigin(ballRadius, ballRadius);
 	}
 
-	void update(int windowWidth, int windowHeight)
+	bool update(int windowWidth, int windowHeight)
 	{
 		shape.move(velocity);
 
 		if (left() < 0)
 			velocity.x = ballVelocity;
-		else if (right() > windowWidth)
+		if (right() > windowWidth)
 			velocity.x = -ballVelocity;
 
 		if (top() < 0)
 			velocity.y = ballVelocity;
-		//else if (bottom() > windowHeight)
-		//	velocity.y = -ballVelocity;
+		if (bottom() > windowHeight)
+			return false;
+			//velocity.y = -ballVelocity;
+		return true;
 	}
 
 	float getX() const { return shape.getPosition().x; }

@@ -20,18 +20,18 @@ private:
 
 	void update() { button.setTextureRect(sf::IntRect(0, spriteCoor, 400, 100)); }
 
+	enum ButtonState { SELECTED, IDLE };
+	ButtonState state = ButtonState::IDLE;
+
 public:
 
 	sf::Sprite button;
 
-	enum ButtonState { SELECTED, IDLE };
-	ButtonState state = ButtonState::IDLE;
-
-	int rank;
+	bool isSelected();
 
 	Button();
 
-	Button(float yPos, const std::string &dir, int rank);
+	Button(float yPos, const std::string &dir);
 
 	void select();
 

@@ -3,6 +3,7 @@
 
 #include <SFML\Graphics.hpp>
 #include <string>
+#include <array>
 
 #include "Button.h"
 
@@ -17,14 +18,18 @@ private:
 	Button *playButton;
 	Button *exitButton;
 
-	int currentRank = 1;
+	int currentRank = 0;
 	int buttonCount;
 
+	void changeSelected(int change);
 
+	int buttonArrayLength;
 
 public:
 
 	int Display();
+
+	Button *buttonArray[2];
 
 	MainMenu();
 	
