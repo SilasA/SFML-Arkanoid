@@ -82,12 +82,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="config.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="FileOperation.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="Rectangle.h" />
@@ -98,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CACC-SFML.cpp" />
+    <ClCompile Include="FileOperation.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="stdafx.cpp">

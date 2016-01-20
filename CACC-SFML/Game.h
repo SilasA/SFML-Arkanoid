@@ -12,6 +12,11 @@
 
 class Game
 {
+
+private:
+
+	FileOperation *dat;
+
 public:
 
 	template <class T1, class T2>
@@ -22,6 +27,9 @@ public:
 	void testCollision(Brick& mBrick, Ball& mBall);
 
 	void gameMain();
+
+	Game();
+	~Game();
 
 };
 

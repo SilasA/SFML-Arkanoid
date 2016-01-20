@@ -8,7 +8,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-
+//
 const float ballRadius{ 10.f }, ballVelocity{ 2.f };
 const float paddleWidth{ 60.f }, paddleHeight{ 20.f }, paddleVelocity{ 5.f };
 const float blockWidth{ 60.f }, blockHeight{ 20.f };

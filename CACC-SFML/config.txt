@@ -1,0 +1,15 @@
+menuWinHeight=600
+menuWinWidth=800
+windowHeight=600
+windowWidth=800
+countBlocksX=11
+countBlocksY=4
+ballRadius=10
+ballVelocity=2
+paddleWidth=60
+paddleHeight=20
+paddleVelocity=5
+blockWidth=60
+blockHeight=20
+ftStep=1
+ftSlice=1

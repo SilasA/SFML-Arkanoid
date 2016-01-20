@@ -4,13 +4,26 @@
 #include "stdafx.h"
 #include "Game.h"
 
+
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
-
+//
 const unsigned int windowWidth{ 800 }, windowHeight{ 600 };
 const int countBlocksX{ 11 }, countBlocksY{ 4 };
 const float ftStep{ 1.f }, ftSlice{ 1.f };
+
+
+Game::Game()
+{
+	dat = new FileOperation();
+}
+
+
+Game::~Game()
+{
+	delete dat;
+}
 
 
 template <class T1, class T2>
