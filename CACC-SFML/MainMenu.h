@@ -6,6 +6,7 @@
 #include <array>
 
 #include "Button.h"
+#include "FileOperation.h"
 
 
 class MainMenu
@@ -13,7 +14,7 @@ class MainMenu
 
 private:
 
-	sf::RenderWindow menuWindow{ { menuWinWidth, menuWinHeight }, "Main Menu" };
+	sf::RenderWindow menuWindow{ { dat.menuWinWidth, dat.menuWinHeight }, "Main Menu" };
 
 	Button *playButton;
 	Button *exitButton;

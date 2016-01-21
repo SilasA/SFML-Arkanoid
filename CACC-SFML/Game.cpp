@@ -3,26 +3,25 @@
 
 #include "stdafx.h"
 #include "Game.h"
-
+#include "FileOperation.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
-//
+
+/*
 const unsigned int windowWidth{ 800 }, windowHeight{ 600 };
 const int countBlocksX{ 11 }, countBlocksY{ 4 };
 const float ftStep{ 1.f }, ftSlice{ 1.f };
-
+*/
 
 Game::Game()
 {
-	dat = new FileOperation();
 }
 
 
 Game::~Game()
 {
-	delete dat;
 }
 
 
@@ -38,12 +37,12 @@ void Game::testCollision(Paddle& mPaddle, Ball& mBall)
 {
 	if (!isIntersecting(mPaddle, mBall)) return;
 
-	mBall.velocity.y = -ballVelocity;
+	mBall.velocity.y = -dat.ballVelocity;
 
-	if (mPaddle.velocity.x == -paddleVelocity && mBall.velocity.x == ballVelocity)
-		mBall.velocity.x = -ballVelocity;
-	else if (mPaddle.velocity.x == paddleVelocity && mBall.velocity.x == -ballVelocity)
-		mBall.velocity.x = ballVelocity;
+	if (mPaddle.velocity.x == -dat.paddleVelocity && mBall.velocity.x == dat.ballVelocity)
+		mBall.velocity.x = -dat.ballVelocity;
+	else if (mPaddle.velocity.x == dat.paddleVelocity && mBall.velocity.x == -dat.ballVelocity)
+		mBall.velocity.x = dat.ballVelocity;
 }
 
 
@@ -64,23 +63,23 @@ void Game::testCollision(Brick& mBrick, Ball& mBall)
 	float minOverlapY{ ballFromTop ? overLapTop : overLapBottom };
 
 	if (abs(minOverlapX) < abs(minOverlapY))
-		mBall.velocity.x = ballFromLeft ? -ballVelocity : ballVelocity;
+		mBall.velocity.x = ballFromLeft ? -dat.ballVelocity : dat.ballVelocity;
 	else
-		mBall.velocity.y = ballFromTop ? -ballVelocity : ballVelocity;
+		mBall.velocity.y = ballFromTop ? -dat.ballVelocity : dat.ballVelocity;
 }
 
 
 void Game::gameMain()
 {
-	Ball ball{ windowWidth , windowHeight };
-	Paddle paddle{ windowWidth, windowHeight };
+	Ball ball{ dat.windowWidth, dat.windowHeight };
+	Paddle paddle{ dat.windowWidth, dat.windowHeight };
 	std::vector<Brick> bricks;
 
-	for (int iX = 0; iX < countBlocksX; ++iX)
-		for (int iY = 0; iY < countBlocksY; ++iY)
-			bricks.emplace_back((iX + 1) * (blockWidth + 3) + 22, (iY + 2) * (blockHeight + 3));
+	for (int iX = 0; iX < dat.countBlocksX; ++iX)
+		for (int iY = 0; iY < dat.countBlocksY; ++iY)
+			bricks.emplace_back((iX + 1) * (dat.blockWidth + 3) + 22, (iY + 2) * (dat.blockHeight + 3));
 
-	sf::RenderWindow window{ { windowWidth, windowHeight }, "Arkanoid Clone" };
+	sf::RenderWindow window{ { dat.windowWidth, dat.windowHeight }, "Arkanoid Clone" };
 	window.setFramerateLimit(60);
 
 	while (true)
@@ -89,9 +88,9 @@ void Game::gameMain()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) break;
 
-		if (!ball.update(windowWidth, windowHeight))
+		if (!ball.update(dat.windowWidth, dat.windowHeight))
 			return;
-		paddle.update(windowWidth);
+		paddle.update(dat.windowWidth);
 		testCollision(paddle, ball);
 
 		for (auto& brick : bricks) testCollision(brick, ball);

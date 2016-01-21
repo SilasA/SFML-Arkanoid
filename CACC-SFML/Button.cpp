@@ -13,9 +13,9 @@ Button::Button()
 Button::Button(float yPos, const std::string &dir)
 {
 	if (buttonImage.loadFromFile(dir))
-		std::cout << "Success." << std::endl;
+		std::cout << "loaded:" << dir << std::endl;
 	else
-		std::cout << "Unable to find file." << std::endl;
+		std::cout << "Unable to find: " << dir << std::endl;
 
 	button.setTextureRect(sf::IntRect(0, 0, 400, 100));
 	button.setTexture(buttonImage);

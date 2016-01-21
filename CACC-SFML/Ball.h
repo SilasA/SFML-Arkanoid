@@ -2,20 +2,21 @@
 #define BALL_H
 
 #include "Rectangle.h" 
+#include "FileOperation.h"
 
 class Ball
 {
 public:
 
 	sf::CircleShape shape;
-	sf::Vector2f velocity{ -ballVelocity, -ballVelocity };
+	sf::Vector2f velocity{ -dat.ballVelocity, -dat.ballVelocity };
 
 	Ball(unsigned int mX, unsigned int mY)
 	{
 		shape.setPosition(mX / 2.f, mY / 2.f);
-		shape.setRadius(ballRadius);
+		shape.setRadius(dat.ballRadius);
 		shape.setFillColor(sf::Color::Red);
-		shape.setOrigin(ballRadius, ballRadius);
+		shape.setOrigin(dat.ballRadius, dat.ballRadius);
 	}
 
 	bool update(int windowWidth, int windowHeight)
@@ -23,12 +24,12 @@ public:
 		shape.move(velocity);
 
 		if (left() < 0)
-			velocity.x = ballVelocity;
+			velocity.x = dat.ballVelocity;
 		if (right() > windowWidth)
-			velocity.x = -ballVelocity;
+			velocity.x = -dat.ballVelocity;
 
 		if (top() < 0)
-			velocity.y = ballVelocity;
+			velocity.y = dat.ballVelocity;
 		if (bottom() > windowHeight)
 			return false;
 			//velocity.y = -ballVelocity;

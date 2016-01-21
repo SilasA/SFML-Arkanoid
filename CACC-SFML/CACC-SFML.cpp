@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "MainMenu.h"
 #include "Game.h"
+#include "FileOperation.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>

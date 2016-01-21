@@ -65,28 +65,6 @@ int MainMenu::Display()
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 					changeSelected(1);
 			}
-
-			/*
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && 
-				sf::Mouse::getPosition(this->menuWindow).x < playButton->button.getPosition().x + 400 &&
-				sf::Mouse::getPosition(this->menuWindow).x > playButton->button.getPosition().x &&
-				sf::Mouse::getPosition(this->menuWindow).y > playButton->button.getPosition().y &&
-				sf::Mouse::getPosition(this->menuWindow).y < playButton->button.getPosition().y + 100)
-			{
-				playButton->select();
-				if (exitButton->isSelected())
-					exitButton->select();
-			}
-			else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) &&
-				sf::Mouse::getPosition(this->menuWindow).x < exitButton->button.getPosition().x + 400 &&
-				sf::Mouse::getPosition(this->menuWindow).x > exitButton->button.getPosition().x &&
-				sf::Mouse::getPosition(this->menuWindow).y > exitButton->button.getPosition().y &&
-				sf::Mouse::getPosition(this->menuWindow).y < exitButton->button.getPosition().y + 100)
-			{
-				exitButton->select();
-				if (playButton->isSelected())
-					playButton->select();
-			} */
 		}
 
 		menuWindow.clear();
