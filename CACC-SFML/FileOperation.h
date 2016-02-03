@@ -5,10 +5,13 @@
 #include <string>
 #include <fstream>
 
+// TODO: Find out why File is called multiple times upon execution and in runtime
+// and fix the problem.
+
 // Gathers and stores config information for the game/application.
-class FileOperation
+const class FileOperation
 {
-public:
+protected:
 
 	// Config file variables 
 	// Window dimensions
@@ -27,6 +30,10 @@ public:
 	// Collects data from a file and puts the data into the apropriate variables
 	void getData();
 
+	// Opens the config file
+	void openFile();
+
+public:
 	// Opens the file
 	FileOperation();
 
@@ -45,7 +52,7 @@ private:
 	// Returns: The data bound to the keyword in string form
 	std::string findKeyword(const std::string &keyword);
 
-}dat;
+};
 
 
 #endif /* FILEOPERATION_H */

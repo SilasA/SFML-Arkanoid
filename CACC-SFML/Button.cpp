@@ -24,7 +24,7 @@ Button::Button(float yPos, const std::string &dir)
 }
 
 
-bool Button::isSelected() { return (this->state == Button::ButtonState::SELECTED); }
+bool Button::isSelected() { return this->state == Button::ButtonState::SELECTED; }
 
 
 void Button::select()

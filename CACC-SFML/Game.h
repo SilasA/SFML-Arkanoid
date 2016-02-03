@@ -8,11 +8,10 @@
 #include <string>
 #include <iostream>
 
-class Game
+class Game : public FileOperation
 {
 
 public:
-
 	// Tests if 2 objects are intersecting
 	// Param mA: 1st object
 	// Param mB: 2nd object

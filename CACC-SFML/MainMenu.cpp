@@ -8,18 +8,25 @@
 
 MainMenu::MainMenu()
 {
+	openFile();
+
 	buttonArray[0] = this->playButton = new Button(100, "Play_Button.png");
 	buttonArray[1] = this->exitButton = new Button(300, "Exit_Button.png");
 
-	this->buttonArrayLength = sizeof(buttonArray) / sizeof(buttonArray[0]);
+	buttonArrayLength = sizeof(buttonArray) / sizeof(buttonArray[0]);
 
 	buttonArray[0]->select();
 }
 
 
+MainMenu::~MainMenu()
+{
+}
+
+
 void MainMenu::changeSelected(int change)
 {
-	if (currentRank + change < 0 || currentRank + change > 2) return;
+	if (currentRank + change < 0 || currentRank + change > 1) return;
 
 	this->currentRank += change;
 

@@ -7,9 +7,7 @@
 
 #include "Rectangle.h"
 
-const unsigned int menuWinHeight{ 600 }, menuWinWidth{ 800 };//
-
-class Button
+class Button : public FileOperation
 {
 
 private:

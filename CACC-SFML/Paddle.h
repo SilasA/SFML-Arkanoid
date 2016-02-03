@@ -4,7 +4,7 @@
 #include "Rectangle.h"
 #include "FileOperation.h"
 
-class Paddle : public Rectangle
+class Paddle : public Rectangle, public FileOperation
 {
 public:
 
@@ -13,9 +13,9 @@ public:
 	Paddle(unsigned int mX, unsigned int mY)
 	{
 		shape.setPosition(mX, mY);
-		shape.setSize({ dat.paddleWidth, dat.paddleHeight });
+		shape.setSize({ paddleWidth, paddleHeight });
 		shape.setFillColor(sf::Color::Red);
-		shape.setOrigin(dat.paddleWidth / 2.f, dat.paddleHeight / 2.f);
+		shape.setOrigin(paddleWidth / 2.f, paddleHeight / 2.f);
 	}
 
 	void update(int windowWidth)
@@ -23,9 +23,9 @@ public:
 		shape.move(velocity);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && left() > 0)
-			velocity.x = -dat.paddleVelocity;
+			velocity.x = -paddleVelocity;
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && right() < windowWidth)
-			velocity.x = dat.paddleVelocity;
+			velocity.x = paddleVelocity;
 		else
 			velocity.x = 0;
 	}

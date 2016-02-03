@@ -9,12 +9,12 @@
 #include "FileOperation.h"
 
 
-class MainMenu
+class MainMenu : public FileOperation
 {
 
 private:
 
-	sf::RenderWindow menuWindow{ { dat.menuWinWidth, dat.menuWinHeight }, "Main Menu" };
+	sf::RenderWindow menuWindow{ { menuWinWidth, menuWinHeight }, "Main Menu" };
 
 	Button *playButton;
 	Button *exitButton;
@@ -33,6 +33,8 @@ public:
 	Button *buttonArray[2];
 
 	MainMenu();
+
+	~MainMenu();
 	
 };
 
