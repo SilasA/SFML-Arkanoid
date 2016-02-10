@@ -6,7 +6,7 @@
 
 Button::Button()
 {
-	this->state = Button::ButtonState::IDLE;
+	state = Button::ButtonState::IDLE;
 }
 
 
@@ -20,7 +20,7 @@ Button::Button(float yPos, const std::string &dir)
 	button.setTextureRect(sf::IntRect(0, 0, 400, 100));
 	button.setTexture(buttonImage);
 	button.setPosition((menuWinWidth / 2.f) - (400 / 2.f), yPos);
-	this->state = Button::ButtonState::IDLE;
+	state = Button::ButtonState::IDLE;
 }
 
 
@@ -31,13 +31,13 @@ void Button::select()
 {
 	if (state == ButtonState::IDLE)
 	{
-		this->spriteCoor = 105;
-		this->state = ButtonState::SELECTED;
+		spriteCoor = 105;
+		state = ButtonState::SELECTED;
 	}
 	else
 	{
-		this->spriteCoor = 0;
-		this->state = ButtonState::IDLE;
+		spriteCoor = 0;
+		state = ButtonState::IDLE;
 	}
 
 	update();

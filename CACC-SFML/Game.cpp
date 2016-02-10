@@ -3,22 +3,11 @@
 
 #include "stdafx.h"
 #include "Game.h"
-#include "FileOperation.h"
+#include "GameConfig.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
-
-
-Game::Game()
-{
-	openFile();
-}
-
-
-Game::~Game()
-{
-}
 
 
 template <class T1, class T2>
@@ -84,9 +73,9 @@ void Game::gameMain()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) break;
 
-		if (!ball.update(windowWidth, windowHeight))
+		if (!ball.update())
 			return;
-		paddle.update(windowWidth);
+		paddle.update();
 		testCollision(paddle, ball);
 
 		for (auto& brick : bricks) testCollision(brick, ball);

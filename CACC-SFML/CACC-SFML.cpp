@@ -4,12 +4,11 @@
 #include "stdafx.h"
 #include "MainMenu.h"
 #include "Game.h"
-#include "FileOperation.h"
+#include "GameConfig.h"
 
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <iostream>
-
 
 
 int _tmain(int argc, _TCHAR* argv[])

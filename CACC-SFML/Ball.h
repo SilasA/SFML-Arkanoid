@@ -2,45 +2,43 @@
 #define BALL_H
 
 #include "Rectangle.h" 
-#include "FileOperation.h"
+#include "GameConfig.h"
 
-class Ball : public FileOperation
+
+class Ball : public GameConfig
 {
 public:
-
+	
+	// The circle that is the ball.
 	sf::CircleShape shape;
+
+	// X and Y Velocity of the ball.
 	sf::Vector2f velocity{ -ballVelocity, -ballVelocity };
 
-	Ball(unsigned int mX, unsigned int mY)
-	{
-		shape.setPosition(mX / 2.f, mY / 2.f);
-		shape.setRadius(ballRadius);
-		shape.setFillColor(sf::Color::Red);
-		shape.setOrigin(ballRadius, ballRadius);
-	}
+	// Sets the Position, Size, Color and Origin of the ball..
+	// Param mX: 2x the desired X position.
+	// Param mY: 2x the desired Y position.
+	Ball(unsigned int mX, unsigned int mY);
 
-	bool update(int windowWidth, int windowHeight)
-	{
-		shape.move(velocity);
+	// Updates the balls Position and direction.
+	bool update();
 
-		if (left() < 0)
-			velocity.x = ballVelocity;
-		if (right() > windowWidth)
-			velocity.x = -ballVelocity;
-
-		if (top() < 0)
-			velocity.y = ballVelocity;
-		if (bottom() > windowHeight)
-			return false;
-			//velocity.y = -ballVelocity;
-		return true;
-	}
-
+	// Returns the X position.
 	float getX() const { return shape.getPosition().x; }
+
+	// Returns the Y position.
 	float getY() const { return shape.getPosition().y; }
+
+	// Returns the Left side's position.
 	float left() const { return getX() - shape.getRadius(); }
+
+	// Returns the Right side's position.
 	float right() const { return getX() + shape.getRadius(); }
+
+	// Returns the Top side's position.
 	float top() const { return getY() - shape.getRadius(); }
+
+	// Returns the Bottom side's position.
 	float bottom() const { return getY() + shape.getRadius(); }
 
 };

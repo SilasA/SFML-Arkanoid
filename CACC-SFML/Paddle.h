@@ -2,33 +2,24 @@
 #define PADDLE_H
 
 #include "Rectangle.h"
-#include "FileOperation.h"
+#include "GameConfig.h"
 
-class Paddle : public Rectangle, public FileOperation
+
+class Paddle : public Rectangle, public GameConfig
 {
 public:
 
+	// Current velocity of the paddle.
 	sf::Vector2f velocity;
 
-	Paddle(unsigned int mX, unsigned int mY)
-	{
-		shape.setPosition(mX, mY);
-		shape.setSize({ paddleWidth, paddleHeight });
-		shape.setFillColor(sf::Color::Red);
-		shape.setOrigin(paddleWidth / 2.f, paddleHeight / 2.f);
-	}
+	// Sets the Size, Position, Color and Origin of the paddle.
+	// Param mX: X position.
+	// Param mY: Y position.
+	Paddle(unsigned int mX, unsigned int mY);
 
-	void update(int windowWidth)
-	{
-		shape.move(velocity);
+	// Updates the paddles position and velocity.
+	void update();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && left() > 0)
-			velocity.x = -paddleVelocity;
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right) && right() < windowWidth)
-			velocity.x = paddleVelocity;
-		else
-			velocity.x = 0;
-	}
 };
 
 #endif /* PADDLE_H */ 

@@ -8,10 +8,11 @@
 #include <string>
 #include <iostream>
 
-class Game : public FileOperation
+class Game : public GameConfig
 {
 
 public:
+
 	// Tests if 2 objects are intersecting
 	// Param mA: 1st object
 	// Param mB: 2nd object
@@ -34,10 +35,6 @@ public:
 	// Creates objects and the game window and positions them.  
 	// It also contains the game's main loop which maintaines it.
 	void gameMain();
-
-	Game();
-
-	~Game();
 
 };
 

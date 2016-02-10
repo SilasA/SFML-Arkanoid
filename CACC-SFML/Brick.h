@@ -2,20 +2,19 @@
 #define BRICK_H
 
 #include "Rectangle.h"
-#include "FileOperation.h"
+#include "GameConfig.h"
 
-class Brick : public Rectangle, public FileOperation
+class Brick : public Rectangle, public GameConfig
 {
 public:
+	// If the brickis destroyed yet
 	bool destroyed{ false };
 
-	Brick(float mX, float mY)
-	{
-		shape.setPosition(mX, mY);
-		shape.setSize({ blockWidth, blockHeight });
-		shape.setFillColor(sf::Color::Yellow);
-		shape.setOrigin(blockWidth / 2.f, blockHeight / 2.f);
-	}
+	// Sets the Size, Color, Position, and its Origin.
+	// Param mX: X position.
+	// Param mY: Y position.
+	Brick(float mX, float mY);
+
 };
 
 #endif /* BRICK_H */
